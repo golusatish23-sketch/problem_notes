@@ -124,12 +124,12 @@ const loginUser=asyncHandler(async (req,res) => {
     }
     const {Acesstoken,refreshToken}=await generateAcessAndRefreshtoken(user._id)
     const loggedInUser=await User.findById(user._id).select("-password -refreshToken")
-    const option = {
+ const option = {
     httpOnly: true,
-    secure: false,
-    sameSite: "lax",
+    secure: true,
+    sameSite: "none",
     maxAge: 24 * 60 * 60 * 1000,
-    };
+};
     // await sendEmail(email)
     console.log("email aaa rah ah haa",email)
     return res
@@ -214,11 +214,11 @@ const refreshTokeenfun=asyncHandler(async (req,res) => {
     throw new ApiError(401, "Invalid refresh token");
 }
     const Acesstoken=  user.generatAccessToken()
-    const option = {
-  httpOnly: true,
-  secure: false,
-  sameSite: "lax",
-  maxAge: 24 * 60 * 60 * 1000,
+const option = {
+    httpOnly: true,
+    secure: true,
+    sameSite: "none",
+    maxAge: 24 * 60 * 60 * 1000,
 };
     return res
     .status(200)

@@ -79,7 +79,7 @@ export default function ProblemNotes({loading,error,onNew}){
     //     )
     // }
     useEffect(()=>{
-        axios.get("/api/v1/problem/Allproblem",{},{
+        axios.get("https://problem-notes-1.onrender.com/api/v1/problem/Allproblem",{
         withCredentials:true
     })
     .then((response)=>{

@@ -10,7 +10,7 @@ function App() {
   const [view,setview]=useState("list")
   const [problem,setproblem]=useState([])
   useEffect(()=>{
-    axios.get('/api/v1/users/refresh',{},{
+    axios.get('https://problem-notes-1.onrender.com/api/v1/users/refresh',{
         withCredentials:true
     })
     .then((response)=>{
@@ -26,7 +26,9 @@ function App() {
     const formdata=new FormData()
     formdata.append("email",data.email);
     formdata.append("password",data.password);
-     axios.post('/api/v1/users/login',formdata)
+     axios.post('https://problem-notes-1.onrender.com/api/v1/users/login',formdata,{
+      withCredentials:true
+     })
      .then((response)=>{
       console.log(response.data.data.user)
       setuser(response.data.data.user)
